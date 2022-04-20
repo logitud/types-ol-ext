@@ -1,4 +1,5 @@
 import { Map as _ol_Map_ } from 'ol';
+import { Layer } from 'ol/layer';
 import { Interaction } from 'ol/interaction';
 import BaseEvent from 'ol/events/Event';
 
@@ -7,7 +8,8 @@ export enum UndoRedoEventType {
     REDO = 'redo'
 }
 export interface Options {
-    maxLength?: number
+    maxLength?: number;
+    layers?: Array<Layer>;
 }
 
 /** Undo/redo interaction
@@ -20,6 +22,7 @@ export interface Options {
  * @fires change:clear
  * @param {Object} options
  *  @param {number=} options.maxLength max undo stack length (0=Infinity), default Infinity
+ *  @param {Array<Layer>} options.layers options.layers array of layers to undo/redo
  */
 export default class UndoRedo extends Interaction {
     constructor(options?: Options);
